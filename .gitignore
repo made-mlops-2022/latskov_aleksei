@@ -9,3 +9,10 @@
 /logs/file_handler.log
 /model/model.pickle
 /__pycache__/
+/notebooks/tmp/file_handler.log
+/notebooks/tmp/model.pickle
+/notebooks/tmp/predict_target.csv
+/notebooks/tmp/test.csv
+/notebooks/tmp/test_target.csv
+/notebooks/tmp/train.csv
+/notebooks/tmp/train_target.csv
