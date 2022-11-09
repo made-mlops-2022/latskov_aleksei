@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 from config import OPTIMIZER_CONFIG, OPTIMIZER_ADAM_CONFIG
 from net import *
 
-PATH = '../data/'
-PATH_LOGS = '../logs/'
-PATH_MODEL = '../model/'
+PATH = 'data/'
+PATH_LOGS = 'logs/'
+PATH_MODEL = 'model/'
 
 
 log_conf = {

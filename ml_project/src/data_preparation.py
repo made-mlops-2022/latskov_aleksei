@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-PATH = '../data/'
+PATH = 'data/'
 
 
 def train_test_split(X, test_size=0.3, random_state=42):

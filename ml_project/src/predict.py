@@ -2,8 +2,8 @@
 
 from train import *
 
-PATH = '../data/'
-PATH_MODEL = '../model/'
+PATH = 'data/'
+PATH_MODEL = 'model/'
 
 
 def main():
