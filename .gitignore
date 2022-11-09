@@ -9,3 +9,4 @@ tmp/
 /data/predict_target.csv
 /logs/file_handler.log
 /model/model.pickle
+__pycache__/
