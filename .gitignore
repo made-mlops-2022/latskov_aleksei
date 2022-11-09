@@ -1,7 +1,7 @@
 .ipynb_checkpoints
 /venv/
 .idea
-tmp/
+/tmp/*
 /data/train_target.csv
 /data/train.csv
 /data/test_target.csv
@@ -9,4 +9,4 @@ tmp/
 /data/predict_target.csv
 /logs/file_handler.log
 /model/model.pickle
-__pycache__/
+/__pycache__/
