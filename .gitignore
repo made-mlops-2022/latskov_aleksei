@@ -1,7 +1,6 @@
 .ipynb_checkpoints
 /venv/
 .idea
-/tmp/*
 /data/train_target.csv
 /data/train.csv
 /data/test_target.csv
