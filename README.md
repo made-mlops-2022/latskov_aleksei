@@ -7,4 +7,4 @@
 
 Для октрытия EDA после установки окружения
 - введите команду source venv/Scripts/activate
-- ввудите команду jupyter notebook
+- введите команду jupyter notebook
