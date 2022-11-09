@@ -1,7 +1,7 @@
 # module net.py
 
-
 import numpy as np
+
 
 class Module(object):
     """

@@ -4,11 +4,14 @@ import pickle
 import logging.config
 import pandas as pd
 
-from IPython import display
 import matplotlib.pyplot as plt
 
-from configs.config import OPTIMIZER_CONFIG, OPTIMIZER_ADAM_CONFIG
+from config import OPTIMIZER_CONFIG, OPTIMIZER_ADAM_CONFIG
 from net import *
+
+PATH = '../data/'
+PATH_LOGS = '../logs/'
+PATH_MODEL = '../model/'
 
 
 log_conf = {
@@ -22,7 +25,7 @@ log_conf = {
         "file_handler": {
             "class": "logging.FileHandler",
             "level": "DEBUG",
-            "filename": "file_handler.log",
+            "filename": f"{PATH_LOGS}file_handler.log",
             "formatter": "simple",
             },
         "stream_handler": {
@@ -38,9 +41,6 @@ log_conf = {
         },
     },
 }
-
-logging.config.dictConfig(log_conf)
-logger = logging.getLogger()
 
 
 class Model:
@@ -99,21 +99,10 @@ class Model:
             y_train_eval = y[:, :1].reshape(-1)
             y_pred = self.predict_proba(X).argmin(axis=-1)
             accuracy_train.append(self.evaluate(y_pred, y_train_eval))
-
-            # Visualize
-            display.clear_output(wait=True)
-            plt.figure(figsize=(8, 6))
-
-            plt.title("Training loss")
-            plt.xlabel("#iteration")
-            plt.ylabel("loss")
-            plt.plot(loss_history, "b")
-            plt.show()
-
             logger.info(f"Current loss: {loss:.6f}")
 
+        # Visualize
         plt.figure(figsize=(8, 6))
-
         plt.title("Accuracy")
         plt.xlabel("Epoch")
         plt.ylabel("Accuracy")
@@ -139,17 +128,19 @@ class Model:
     
 
 def main():    
-    train = pd.read_csv('train.csv')
-    train_target = pd.read_csv('train_target.csv')
+    train = pd.read_csv(PATH + 'train.csv')
+    train_target = pd.read_csv(PATH + 'train_target.csv')
 
     del train['4']
 
     model = Model(train, 'adam')
     model.fit(train, train_target)
 
-    with open('model.pickle', 'wb') as f:
+    with open(PATH_MODEL + 'model.pickle', 'wb') as f:
         pickle.dump(model, f)
 
 
 if __name__ == '__main__':
+    logging.config.dictConfig(log_conf)
+    logger = logging.getLogger()
     main()
