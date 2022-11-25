@@ -20,4 +20,5 @@
 .pytest_cache
 file_handler.log
 predict_target.csv
+__pycache__
 
