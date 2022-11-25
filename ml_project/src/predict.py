@@ -2,11 +2,8 @@
 
 from train import *
 
-PATH = '../data/'
-PATH_MODEL = '../model/'
 
-
-def main():
+def predict():
     try:
         with open(PATH_MODEL + 'model.pickle', 'rb') as f:
             model = pickle.load(f)
@@ -18,7 +15,8 @@ def main():
 
     predict = model.predict(test)
     pd.Series(predict).to_csv(PATH + 'predict_target.csv', index=False)
+    print('predict done')
 
     
 if __name__ == '__main__':
-    main()
+    predict()

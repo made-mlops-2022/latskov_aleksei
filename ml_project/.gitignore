@@ -17,3 +17,7 @@
 /notebooks/tmp/test_target.csv
 /notebooks/tmp/train.csv
 /notebooks/tmp/train_target.csv
+.pytest_cache
+file_handler.log
+predict_target.csv
+
