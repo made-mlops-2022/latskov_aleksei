@@ -1,13 +1,15 @@
 import os
 import uvicorn
-from typing import List, Union, Optional
+import time
 
-from fastapi import FastAPI
+from typing import List, Union, Optional
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conlist
 
 from predict import *
 
 
+time_start = time.time()
 app = FastAPI()
 
 
@@ -25,12 +27,22 @@ def load_object(path: str) -> Model:
 
 @app.get('/')
 def home():
-    return {"msg": "OK"}
+    time_finish = time.time()
+    time_diff = time_finish - time_start
+    if time_diff > 30:
+        return {"msg": f"Ok {time_diff}"}
+    else:
+        raise HTTPException(status_code=503)
 
 
 @app.get('/health')
 def rood():
-    return {"health check": "200"}
+    time_finish = time.time()
+    time_diff = time_finish - time_start
+    if time_diff < 120:
+        return {"health check": f"Ok {time_diff}"}
+    else:
+        raise HTTPException(status_code=503)
 
 
 @app.on_event("startup")

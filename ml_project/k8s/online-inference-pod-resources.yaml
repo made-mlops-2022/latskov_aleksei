@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: online-inference-pod-resources
+spec:
+  containers:
+    - image: alexcei64/online_inference:v1
+      name: online-inference
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          memory: "256Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "500m"
