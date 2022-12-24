@@ -1,18 +1,22 @@
 import os
 import uvicorn
-from typing import List, Union, Optional
+from typing import List, Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel, conlist
 
-from predict import *
+from train import *
 
+
+logging.config.dictConfig(log_conf)
+logger = logging.getLogger()
 
 app = FastAPI()
 
 
 class OutputDataModel(BaseModel):
     result: int
+
 
 class InputDataModel(BaseModel):
     data: List[conlist(Union[float, str, None, int], min_items=29, max_items=29)]
@@ -42,12 +46,16 @@ def load_model():
         raise RuntimeError(err)
 
     model = load_object(model_path)
-    print('startup done')
+    logger.info('startup done')
 
 
 @app.get("/predict_from_file/")
 async def predict_from_file():
-    predict()
+    test = pd.read_csv(PATH + 'test.csv')
+    del test['4']
+    test.to_csv('for_predict.csv')
+    predict = model.predict(test)
+    pd.Series(predict).to_csv(PATH + 'predict_target.csv', index=False)
     return {"msg": "done"}
 
 
