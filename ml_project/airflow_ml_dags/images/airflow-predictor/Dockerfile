@@ -1,10 +1,9 @@
 FROM python:3.9.7-slim
-COPY predict.py requirements.txt /
-COPY ../../src/train.py src/
-COPY ../../src/predict.py src/
-COPY ../../src/net.py src/
-COPY ../../model/* model/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python3", "predict.py"]
+COPY requirements.txt /
+RUN pip install --upgrade pip && pip install -r requirements.txt
+COPY data_/ /data_/
+COPY model/ /model/
+COPY predict.py config.py net.py train.py /
+
+CMD ["python3", "predict.py"]

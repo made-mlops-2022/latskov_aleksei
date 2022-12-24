@@ -65,6 +65,7 @@ services:
       - logs:/opt/airflow/logs
       - ./dags/:/opt/airflow/dags/
       - ./data/:/opt/airflow/data/
+      - ./model/:/opt/airflow/model/
       - /var/run/docker.sock:/var/run/docker.sock
     environment: *airflow_environment
     command: scheduler
@@ -79,7 +80,9 @@ services:
 
   predictor:
     build:
-      context: ./images/airflow-predictor
+      context: images/airflow-predictor
+    volumes:
+      - ./data:/data/
     image: airflow-predictor
 
 volumes:

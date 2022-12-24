@@ -4,13 +4,10 @@ from train import *
 
 
 def predict():
-    try:
-        with open(PATH_MODEL + 'model.pickle', 'rb') as f:
-            model = pickle.load(f)
-    except Exception as error:
-        print(error)
+    with open('model.pickle', 'rb') as f:
+        model = pickle.load(f)
 
-    test = pd.read_csv(PATH + 'test.csv')
+    test = pd.read_csv('test.csv')
     del test['4']
     test.to_csv('for_predict.csv')
     predict = model.predict(test)

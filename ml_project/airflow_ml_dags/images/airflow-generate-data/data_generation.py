@@ -11,7 +11,7 @@ def generate_data():
         df[column] = np.random.choice(test[column].values, 10)
 
     output_dir = '/data'
-    df.to_csv(f"{output_dir}/data.csv", index=False)
+    df.to_csv(f"{output_dir}/test.csv", index=False)
 
 
 if __name__=="__main__":
