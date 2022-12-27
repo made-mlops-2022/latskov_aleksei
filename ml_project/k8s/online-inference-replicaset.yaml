@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: online-inference-replicaset
+  labels:
+    app: online-inference
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: online-inference
+  template:
+    metadata:
+      name: online-inference-replicaset
+      labels:
+        app: online-inference
+    spec:
+      containers:
+        - name: online-inference-replicaset
+          image: alexcei64/online_inference:v2
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

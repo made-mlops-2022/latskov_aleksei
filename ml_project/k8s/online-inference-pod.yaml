@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: online-inference-pod
+spec:
+  containers:
+    - image: alexcei64/online_inference:v1
+      name: online-inference
+      ports:
+        - containerPort: 80
